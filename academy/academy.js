@@ -27,7 +27,8 @@ function renderAcademyPage() {
         eyebrow: 'Vision pédagogique',
         title: 'Une académie pensée pour apprendre, appliquer et progresser.',
         description: 'Cette première fondation pose une structure simple, performante et maintenable. Elle laisse le site actuel intact tout en préparant les futures briques e-learning.',
-        align: 'left'
+        align: 'left',
+        id: 'academy-intro-title'
       })}
       <div class="academy-feature-grid">
         <article>
@@ -52,7 +53,8 @@ function renderAcademyPage() {
       ${SectionTitle({
         eyebrow: 'Formations à venir',
         title: 'Premiers parcours en préparation.',
-        description: 'Ces cartes sont temporaires et servent de base visuelle avant la connexion à une vraie source de données.'
+        description: 'Ces cartes sont temporaires et servent de base visuelle avant la connexion à une vraie source de données.',
+        id: 'formations-title'
       })}
       <div class="academy-course-grid">
         ${upcomingCourses.map((course) => CourseCard(course)).join('')}

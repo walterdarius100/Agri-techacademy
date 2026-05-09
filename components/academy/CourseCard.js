@@ -12,6 +12,7 @@ export function CourseCard(course) {
 
   return `
     <article class="academy-course-card">
+      <div class="academy-course-card__accent" aria-hidden="true"></div>
       <div class="academy-course-card__meta">
         <span>${escapeHtml(course.category)}</span>
         <strong>${escapeHtml(course.status)}</strong>
