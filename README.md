@@ -44,3 +44,16 @@ Remplace aussi :
 
 Le Google Sheets endpoint est déjà placé dans `script.js`.
 Mais si EmailJS n’est pas configuré, le formulaire affichera un message d’erreur propre.
+
+## Fondation Académie Agri-Tech
+
+Une première route statique `/academy/` a été ajoutée sans modifier la page d’accueil existante.
+
+Architecture préparée pour les prochaines étapes :
+
+- `academy/` : route publique actuelle de l’académie.
+- `components/academy/` : composants réutilisables de présentation.
+- `data/` : données temporaires des formations.
+- `lib/` : helpers partagés sans dépendance.
+- `types/` : contrats JSDoc des modèles de l’académie.
+- `app/academy/` : emplacement réservé à une future migration Next.js App Router.
