@@ -5,10 +5,12 @@ import { escapeHtml } from '../../lib/html.js';
  * Elle pourra être portée telle quelle en composant React/Next.js lorsque
  * les cours viendront d’une API, d’un CMS ou d’une base de données.
  */
-export function CourseCard(course) {
-  const outcomes = course.outcomes
+export function CourseCard(course, { basePath = './courses' } = {}) {
+  const outcomes = course.objectives
+    .slice(0, 3)
     .map((outcome) => `<li>${escapeHtml(outcome)}</li>`)
     .join('');
+  const href = `${basePath.replace(/\/$/, '')}/${course.slug}/`;
 
   return `
     <article class="academy-course-card">
@@ -26,6 +28,7 @@ export function CourseCard(course) {
         <span>${escapeHtml(course.duration)}</span>
         <span>${escapeHtml(course.level)}</span>
       </div>
+      <a class="academy-course-card__link" href="${escapeHtml(href)}" aria-label="Voir le détail : ${escapeHtml(course.title)}">Voir le programme</a>
     </article>
   `;
 }
