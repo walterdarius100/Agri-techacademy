@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tableau de bord étudiant temporaire de l’Académie Agri-Tech." />
+  <meta name="theme-color" content="#0f3d2e" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Tableau de bord étudiant | Académie Agri-Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../academy.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu principal</a>
+  <header class="site-header" id="top">
+    <nav class="navbar" aria-label="Navigation principale Académie Agri-Tech">
+      <a class="brand" href="../../" aria-label="Retour à l’accueil Agri-Tech">
+        <span class="brand-mark"><img src="../../assets/images/logo-agritech.png" alt="" aria-hidden="true" width="127" height="96" decoding="async" fetchpriority="high" /></span>
+        <span class="brand-text"><strong>Agri-tech</strong><small>Académie</small></span>
+      </a>
+      <button class="menu-btn" id="academyMenuBtn" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="academyNavLinks">☰</button>
+      <div class="nav-links" id="academyNavLinks">
+        <a href="../">Académie</a>
+        <a href="../courses/">Formations</a>
+        <a href="./" aria-current="page">Dashboard</a>
+        <a href="../my-courses/" class="nav-cta">Mes formations</a>
+      </div>
+    </nav>
+  </header>
+  <main id="main" class="academy-main">
+    <div id="studentDashboardRoot" aria-live="polite"></div>
+  </main>
+  <footer class="site-footer academy-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="footer-brand academy-footer__brand">
+          <span class="footer-brand-mark"><img src="../../assets/images/logo-agritech.png" alt="" aria-hidden="true" width="34" height="34" decoding="async" loading="lazy" /></span>
+          <h4>Agri-Tech Academy</h4>
+        </div>
+        <p>Espace étudiant visuel temporaire, sans login réel, paiement réel ou base de données.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Espace étudiant</h4>
+        <a href="./">Dashboard</a>
+        <a href="../my-courses/">Mes formations</a>
+        <a href="../courses/">Catalogue public</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Agri-tech — Tous droits réservés</div>
+  </footer>
+  <script type="module" src="./dashboard.js"></script>
+</body>
+</html>

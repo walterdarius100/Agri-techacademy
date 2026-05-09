@@ -67,7 +67,7 @@ function renderAcademyPage() {
       <div class="academy-roadmap__items">
         <span>Authentification</span>
         <span>Paiement</span>
-        <span>Espace étudiant</span>
+        <a href="./dashboard/">Espace étudiant</a>
         <span>Dashboard admin</span>
         <span>Gestion des cours</span>
       </div>
