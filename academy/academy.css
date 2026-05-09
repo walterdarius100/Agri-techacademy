@@ -1,0 +1,40 @@
+/* Styles spécifiques à /academy.
+   Ils réutilisent les variables globales du site pour conserver la cohérence
+   visuelle sans modifier la page d’accueil existante. */
+.academy-main{overflow:hidden}
+.academy-hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:34px;align-items:center;min-height:72vh}
+.academy-hero__content h1{font-size:clamp(2.35rem,5vw,4.9rem)}
+.academy-hero__content p{color:var(--muted);font-size:1.1rem;max-width:760px}
+.academy-hero__panel{background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(232,245,238,.84));border:1px solid var(--border);border-radius:32px;box-shadow:var(--shadow);padding:30px;position:relative;overflow:hidden}
+.academy-hero__panel::after{content:"";position:absolute;right:-70px;bottom:-70px;width:190px;height:190px;border-radius:50%;background:rgba(242,184,75,.24)}
+.academy-hero__panel h2{font-size:clamp(1.8rem,3vw,2.5rem);position:relative;z-index:1}
+.academy-hero__panel p{color:var(--muted);position:relative;z-index:1}
+.academy-pill{display:inline-flex;width:max-content;margin-bottom:18px;padding:8px 12px;border-radius:999px;background:var(--green-100);color:var(--green-900);font-weight:900;font-size:.8rem;position:relative;z-index:1}
+.academy-stack{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:24px;position:relative;z-index:1}
+.academy-stack span,.academy-roadmap__items span{background:#fff;border:1px solid var(--border);border-radius:16px;padding:12px 14px;font-weight:900;color:var(--green-900)}
+.academy-section-title{max-width:780px;margin:0 auto 34px;text-align:center}
+.academy-section-title--left{margin-left:0;text-align:left}
+.academy-section-title p{color:var(--muted);font-size:1.06rem}
+.academy-intro{padding-top:34px}
+.academy-feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.academy-feature-grid article,.academy-course-card{background:#fff;border:1px solid var(--border);border-radius:28px;padding:24px;box-shadow:0 18px 42px rgba(6,40,31,.08)}
+.academy-feature-grid span{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:14px;background:var(--green-100);color:var(--green-900);font-weight:900;margin-bottom:16px}
+.academy-feature-grid p,.academy-course-card p{color:var(--muted)}
+.academy-course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.academy-course-card{display:flex;flex-direction:column;min-height:100%;transition:transform .2s ease,box-shadow .2s ease}
+.academy-course-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.academy-course-card__meta,.academy-course-card__footer{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.academy-course-card__meta{margin-bottom:18px}
+.academy-course-card__meta span,.academy-course-card__meta strong,.academy-course-card__footer span{display:inline-flex;border-radius:999px;padding:7px 10px;font-size:.78rem;font-weight:900}
+.academy-course-card__meta span{background:var(--green-100);color:var(--green-700)}
+.academy-course-card__meta strong{background:rgba(242,184,75,.18);color:#8a5b05}
+.academy-course-card ul{padding-left:20px;color:var(--muted);margin-bottom:22px}
+.academy-course-card__footer{margin-top:auto;padding-top:16px;border-top:1px solid var(--border)}
+.academy-course-card__footer span{background:rgba(15,61,46,.06);color:var(--green-900)}
+.academy-roadmap{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:center;background:var(--green-900);color:#fff;border-radius:34px;margin-top:36px;margin-bottom:80px}
+.academy-roadmap .eyebrow{color:var(--gold)}
+.academy-roadmap h2{margin-bottom:0}
+.academy-roadmap__items{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.academy-roadmap__items span{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18);color:#fff}
+@media(max-width:900px){.academy-hero,.academy-roadmap{grid-template-columns:1fr}.academy-feature-grid,.academy-course-grid{grid-template-columns:repeat(2,1fr)}.academy-roadmap__items{justify-content:flex-start}}
+@media(max-width:620px){.academy-hero{min-height:auto;padding-top:52px}.academy-feature-grid,.academy-course-grid{grid-template-columns:1fr}.academy-stack{grid-template-columns:1fr}.academy-roadmap{border-radius:26px;margin-bottom:48px}}
