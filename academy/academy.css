@@ -63,19 +63,18 @@
 .academy-footer{margin-top:0;background:linear-gradient(135deg,var(--green-950),var(--green-900));color:rgba(255,255,255,.76)}
 .academy-footer .academy-footer__grid{align-items:start;grid-template-columns:minmax(240px,1.35fr) repeat(4,minmax(135px,1fr));gap:34px;padding-top:60px;padding-bottom:48px}
 .academy-footer .footer-col{min-width:0}
-.academy-footer__intro{display:grid;gap:16px}
-.academy-footer__brand{align-items:center;gap:12px;margin-bottom:0;line-height:1}
-.academy-footer__brand .footer-brand-mark{width:38px;height:38px;box-shadow:0 12px 26px rgba(0,0,0,.18)}
-.academy-footer__brand h4{margin:0;color:#fff;font-size:1.08rem;font-weight:900;line-height:1;letter-spacing:-.01em}
+.academy-footer__intro{display:grid;gap:14px}
+.academy-footer__brand{align-items:flex-start;gap:10px;margin-bottom:0;line-height:1.2}
+.academy-footer__brand .footer-brand-mark{width:22px;height:22px;margin-top:-2px;box-shadow:0 10px 22px rgba(0,0,0,.16)}
+.academy-footer__brand h4{margin:0;color:#fff;font-size:.82rem;font-weight:900;line-height:1.2;text-transform:uppercase;letter-spacing:.1em}
 .academy-footer .footer-col p{max-width:360px;margin:0;color:rgba(255,255,255,.72);line-height:1.68}
 .academy-footer .footer-col>h4{margin:0 0 14px;font-size:.82rem;line-height:1.2;color:#fff;text-transform:uppercase;letter-spacing:.1em}
 .academy-footer .footer-col a{display:block;width:max-content;max-width:100%;padding:5px 0;color:rgba(255,255,255,.72);line-height:1.35;text-decoration:none;transition:color .2s ease,transform .2s ease}
 .academy-footer .footer-col a:hover{color:#fff;transform:translateX(2px)}
-.academy-footer__site-link{display:inline-flex!important;width:max-content;align-items:center;border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:10px 14px!important;background:rgba(255,255,255,.08);color:#fff!important;font-weight:900}
-.academy-footer__bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.12);padding:18px max(20px,calc((100vw - 1180px)/2));color:rgba(255,255,255,.64);font-size:.9rem}
+.academy-footer__bottom{border-top:1px solid rgba(255,255,255,.12);padding:18px max(20px,calc((100vw - 1180px)/2));color:rgba(255,255,255,.64);font-size:.9rem;text-align:center}
 @media(max-width:1020px){.academy-footer .academy-footer__grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:30px}.academy-footer__intro{grid-column:1/-1}}
 @media(max-width:720px){.academy-footer .academy-footer__grid{grid-template-columns:repeat(2,minmax(0,1fr));padding-top:46px;padding-bottom:40px;gap:26px}.academy-footer__intro{grid-column:1/-1}.academy-footer .footer-col p{max-width:100%}}
-@media(max-width:520px){.academy-footer .academy-footer__grid{grid-template-columns:1fr}.academy-footer .footer-col a{width:100%;padding:7px 0}.academy-footer__site-link{width:100%;justify-content:center}.academy-footer__bottom{display:grid;gap:8px;text-align:center}}
+@media(max-width:520px){.academy-footer .academy-footer__grid{grid-template-columns:1fr}.academy-footer .footer-col a{width:100%;padding:7px 0}.academy-footer__bottom{text-align:center}}
 
 /* Pages publiques /academy/courses et détails de formation. */
 .academy-list-hero{max-width:980px;padding-top:88px;padding-bottom:34px}
