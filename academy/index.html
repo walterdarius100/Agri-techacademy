@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Académie Agri-Tech : formations agricoles pratiques bientôt disponibles pour entrepreneurs, producteurs et institutions." />
+  <meta name="theme-color" content="#0f3d2e" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Académie Agri-Tech | Formations agricoles pratiques" />
+  <meta property="og:description" content="Une fondation e-learning légère pour préparer les futures formations, l’espace étudiant et l’administration de l’académie." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_HT" />
+
+  <title>Académie Agri-Tech | Formations agricoles pratiques</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="./academy.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu principal</a>
+
+  <header class="site-header" id="top">
+    <nav class="navbar" aria-label="Navigation principale Académie Agri-Tech">
+      <a class="brand" href="../" aria-label="Retour à l’accueil Agri-Tech">
+        <span class="brand-mark"><img src="../assets/images/logo-agritech.png" alt="" aria-hidden="true" width="127" height="96" decoding="async" fetchpriority="high" /></span>
+        <span class="brand-text"><strong>Agri-tech</strong><small>Académie</small></span>
+      </a>
+
+      <button class="menu-btn" id="academyMenuBtn" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="academyNavLinks">☰</button>
+
+      <div class="nav-links" id="academyNavLinks">
+        <a href="../#services">Services</a>
+        <a href="./" aria-current="page">Académie</a>
+        <a href="../#cours">Cours en ligne</a>
+        <a href="../#processus">Méthode</a>
+        <a href="../#contact" class="nav-cta">Demander un devis</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Route /academy : point d’entrée isolé pour ne pas impacter le site vitrine existant.
+       Le contenu HTML ci-dessous sert de fallback visible; academy.js le remplace ensuite
+       par le rendu modulaire préparé pour les futures évolutions. -->
+  <main id="main" class="academy-main">
+    <div id="academyRoot" aria-live="polite">
+      <section class="academy-hero section-pad" aria-labelledby="academy-title">
+        <div class="academy-hero__content reveal is-visible">
+          <span class="eyebrow">Académie Agri-Tech</span>
+          <h1 id="academy-title">Des formations pratiques pour transformer les idées agricoles en projets solides.</h1>
+          <p>La future Académie Agri-Tech centralisera des parcours courts, concrets et adaptés au terrain pour accompagner producteurs, jeunes entrepreneurs et institutions.</p>
+          <div class="hero-actions">
+            <a href="#formations" class="btn primary">Découvrir les formations</a>
+            <a href="../#contact" class="btn secondary">Parler à un conseiller</a>
+          </div>
+        </div>
+
+        <aside class="academy-hero__panel reveal is-visible reveal-delay-1" aria-label="Fondation de la plateforme">
+          <span class="academy-pill">Fondation technique</span>
+          <h2>Une base prête pour évoluer</h2>
+          <p>Architecture préparée pour accueillir progressivement les cours, l’espace étudiant, l’admin, l’authentification et le paiement.</p>
+          <div class="academy-stack" aria-label="Modules prévus">
+            <span>Cours</span>
+            <span>Étudiants</span>
+            <span>Admin</span>
+            <span>Paiement</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section-pad academy-intro" aria-labelledby="academy-intro-title">
+        <div class="academy-section-title academy-section-title--left">
+          <span class="eyebrow">Vision pédagogique</span>
+          <h2 id="academy-intro-title">Une académie pensée pour apprendre, appliquer et progresser.</h2>
+          <p>Cette première fondation pose une structure simple, performante et maintenable. Elle laisse le site actuel intact tout en préparant les futures briques e-learning.</p>
+        </div>
+        <div class="academy-feature-grid">
+          <article>
+            <span>01</span>
+            <h3>Contenus terrain</h3>
+            <p>Des modules courts centrés sur les décisions pratiques : budget, organisation, suivi et rentabilité.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Parcours évolutifs</h3>
+            <p>Une structure prête pour connecter plus tard l’authentification, les paiements et la progression étudiant.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Administration future</h3>
+            <p>Des espaces dédiés sont réservés pour la gestion des cours, des inscriptions et du pilotage interne.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-pad" id="formations" aria-labelledby="formations-title">
+        <div class="academy-section-title">
+          <span class="eyebrow">Formations à venir</span>
+          <h2 id="formations-title">Premiers parcours en préparation.</h2>
+          <p>Ces cartes sont temporaires et servent de base visuelle avant la connexion à une vraie source de données.</p>
+        </div>
+        <div class="academy-course-grid">
+          <article class="academy-course-card">
+            <div class="academy-course-card__meta"><span>Entrepreneuriat agricole</span><strong>Bientôt disponible</strong></div>
+            <h3>Démarrer un projet agricole rentable</h3>
+            <p>Apprenez à valider une idée, structurer un budget et planifier les premières actions terrain.</p>
+            <ul><li>Diagnostic de projet</li><li>Budget initial</li><li>Plan d’action simple</li></ul>
+            <div class="academy-course-card__footer"><span>4 semaines</span><span>Débutant</span></div>
+          </article>
+          <article class="academy-course-card">
+            <div class="academy-course-card__meta"><span>Élevage</span><strong>Préinscription</strong></div>
+            <h3>Élevage moderne de poulets de chair</h3>
+            <p>Une base claire pour organiser le logement, l’alimentation, la biosécurité et le suivi technique.</p>
+            <ul><li>Cycle de production</li><li>Gestion sanitaire</li><li>Suivi des performances</li></ul>
+            <div class="academy-course-card__footer"><span>3 semaines</span><span>Pratique</span></div>
+          </article>
+          <article class="academy-course-card">
+            <div class="academy-course-card__meta"><span>Aquaculture</span><strong>En préparation</strong></div>
+            <h3>Pisciculture adaptée au contexte local</h3>
+            <p>Comprenez les fondamentaux d’un bassin productif et les décisions clés avant d’investir.</p>
+            <ul><li>Choix du site</li><li>Gestion de l’eau</li><li>Plan de production</li></ul>
+            <div class="academy-course-card__footer"><span>5 modules</span><span>Intermédiaire</span></div>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <span class="footer-brand-mark"><img src="../assets/images/logo-agritech.png" alt="" aria-hidden="true" width="34" height="34" decoding="async" loading="lazy" /></span>
+          <h4>Agri-tech</h4>
+        </div>
+        <p>Solutions agricoles modernes et formations pratiques pour préparer les projets de demain.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Académie</h4>
+        <a href="#formations">Formations à venir</a>
+        <a href="../#cours">Cours actuels</a>
+        <a href="../#contact">Préinscription</a>
+      </div>
+      <div class="footer-col">
+        <h4>Plateforme future</h4>
+        <p>Espace étudiant, paiement, dashboard admin et gestion de cours seront ajoutés progressivement.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="../#contact">Contacter Agri-Tech</a>
+        <a href="../">Retour au site principal</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Agri-tech. Tous droits réservés.</div>
+  </footer>
+
+  <script type="module" src="./academy.js"></script>
+</body>
+</html>
