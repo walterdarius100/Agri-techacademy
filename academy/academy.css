@@ -62,20 +62,19 @@
 /* Footer Academy : réutilise la structure du footer principal avec un ajustement
    léger du bloc marque pour garder l’identité Agri-Tech Academy compacte. */
 .academy-footer{margin-top:0;background:var(--green-900)}
-.academy-footer .footer-container{align-items:start;grid-template-columns:repeat(4,1fr);gap:30px;padding-top:58px;padding-bottom:58px}
+.academy-footer .footer-container{align-items:start;grid-template-columns:repeat(4,1fr);gap:28px;padding-top:54px;padding-bottom:54px}
 .academy-footer .footer-col{min-width:0}
-.academy-footer__brand{align-items:center;margin-bottom:12px}
-.academy-footer__brand-text{display:flex;flex-direction:column;gap:4px;line-height:1.05}
-.academy-footer__brand-text strong{color:#fff;font-size:1.05rem;font-weight:900;letter-spacing:-.01em}
-.academy-footer__brand-text small{color:rgba(255,255,255,.68);font-size:.78rem;font-weight:700;letter-spacing:.01em}
-.academy-footer .footer-col p{max-width:310px;margin:0}
-.academy-footer .footer-col h4{margin:0 0 12px;font-size:1rem;line-height:1.2;color:#fff}
+.academy-footer__brand{align-items:center;gap:12px;margin-bottom:10px;line-height:1}
+.academy-footer__brand .footer-brand-mark{width:34px;height:34px}
+.academy-footer__brand h4{margin:0;color:#fff;font-size:1.05rem;font-weight:900;line-height:1;letter-spacing:-.01em}
+.academy-footer .footer-col p{max-width:310px;margin:0;line-height:1.6}
+.academy-footer .footer-col>h4{margin:0 0 12px;font-size:1rem;line-height:1.2;color:#fff}
 .academy-footer .footer-col a{line-height:1.45}
 .academy-footer .contact-list{gap:10px;margin-top:0}
 .academy-footer .contact-item{gap:10px}
-.academy-footer .footer-bottom{padding:20px}
-@media(max-width:900px){.academy-footer .footer-container{grid-template-columns:repeat(2,1fr);gap:30px}}
-@media(max-width:620px){.academy-footer .footer-container{grid-template-columns:1fr;padding-top:44px;padding-bottom:44px;gap:26px}.academy-footer .footer-col p{max-width:100%}}
+.academy-footer .footer-bottom{padding:18px 20px}
+@media(max-width:900px){.academy-footer .footer-container{grid-template-columns:repeat(2,1fr);gap:28px}}
+@media(max-width:620px){.academy-footer .footer-container{grid-template-columns:1fr;padding-top:40px;padding-bottom:40px;gap:24px}.academy-footer .footer-col p{max-width:100%}}
 
 /* Pages publiques /academy/courses et détails de formation. */
 .academy-list-hero{max-width:980px;padding-top:88px;padding-bottom:34px}
