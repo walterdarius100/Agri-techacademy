@@ -1,7 +1,7 @@
 import { AcademyHero } from '../components/academy/AcademyHero.js';
-import { CourseCard } from '../components/academy/CourseCard.js';
+import { CourseList } from '../components/academy/CourseList.js';
 import { SectionTitle } from '../components/academy/SectionTitle.js';
-import { upcomingCourses } from '../data/academy-courses.js';
+import { courses } from '../data/courses.js';
 
 /**
  * Point d’entrée de la route statique /academy.
@@ -52,13 +52,11 @@ function renderAcademyPage() {
     <section class="section-pad" id="formations" aria-labelledby="formations-title">
       ${SectionTitle({
         eyebrow: 'Formations à venir',
-        title: 'Premiers parcours en préparation.',
-        description: 'Ces cartes sont temporaires et servent de base visuelle avant la connexion à une vraie source de données.',
+        title: 'Premiers parcours publics disponibles.',
+        description: 'Explorez les formations pilotes et leurs programmes avant l’ouverture des inscriptions complètes.',
         id: 'formations-title'
       })}
-      <div class="academy-course-grid">
-        ${upcomingCourses.map((course) => CourseCard(course)).join('')}
-      </div>
+      ${CourseList(courses, { basePath: './courses' })}
     </section>
 
     <section class="section-pad academy-roadmap" aria-labelledby="roadmap-title">
