@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Académie Agri-Tech : formations agricoles pratiques bientôt disponibles pour entrepreneurs, producteurs et institutions." />
+  <meta name="theme-color" content="#0f3d2e" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title" content="Académie Agri-Tech | Formations agricoles pratiques" />
+  <meta property="og:description" content="Une fondation e-learning légère pour préparer les futures formations, l’espace étudiant et l’administration de l’académie." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_HT" />
+
+  <title>Académie Agri-Tech | Formations agricoles pratiques</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="./academy.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu principal</a>
+
+  <header class="site-header" id="top">
+    <nav class="navbar" aria-label="Navigation principale Académie Agri-Tech">
+      <a class="brand" href="../" aria-label="Retour à l’accueil Agri-Tech">
+        <span class="brand-mark"><img src="../assets/images/logo-agritech.png" alt="" aria-hidden="true" width="127" height="96" decoding="async" fetchpriority="high" /></span>
+        <span class="brand-text"><strong>Agri-tech</strong><small>Académie</small></span>
+      </a>
+
+      <button class="menu-btn" id="academyMenuBtn" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="academyNavLinks">☰</button>
+
+      <div class="nav-links" id="academyNavLinks">
+        <a href="../#services">Services</a>
+        <a href="../#cours">Cours en ligne</a>
+        <a href="../#processus">Méthode</a>
+        <a href="../#contact" class="nav-cta">Demander un devis</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Route /academy : point d’entrée isolé pour ne pas impacter le site vitrine existant. -->
+  <main id="main" class="academy-main">
+    <div id="academyRoot" aria-live="polite"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <span class="footer-brand-mark"><img src="../assets/images/logo-agritech.png" alt="" aria-hidden="true" width="34" height="34" decoding="async" loading="lazy" /></span>
+          <h4>Agri-tech</h4>
+        </div>
+        <p>Solutions agricoles modernes et formations pratiques pour préparer les projets de demain.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Académie</h4>
+        <a href="#formations">Formations à venir</a>
+        <a href="../#cours">Cours actuels</a>
+        <a href="../#contact">Préinscription</a>
+      </div>
+      <div class="footer-col">
+        <h4>Plateforme future</h4>
+        <p>Espace étudiant, paiement, dashboard admin et gestion de cours seront ajoutés progressivement.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="../#contact">Contacter Agri-Tech</a>
+        <a href="../">Retour au site principal</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Agri-tech. Tous droits réservés.</div>
+  </footer>
+
+  <script type="module" src="./academy.js"></script>
+</body>
+</html>
