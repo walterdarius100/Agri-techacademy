@@ -59,21 +59,24 @@
 @media(prefers-reduced-motion:reduce){.academy-feature-grid article:hover,.academy-course-card:hover{transform:none}}
 @media(max-width:900px){.academy-hero{grid-template-columns:1fr;gap:30px;min-height:auto;padding-top:70px}.academy-roadmap{grid-template-columns:1fr}.academy-feature-grid,.academy-course-grid{grid-template-columns:repeat(2,1fr)}.academy-roadmap__items{justify-content:flex-start}}
 @media(max-width:620px){.academy-hero{padding-top:54px;padding-bottom:50px}.academy-hero__content h1{letter-spacing:-.045em}.academy-hero__actions .btn{width:100%}.academy-hero__kpis{display:grid;grid-template-columns:1fr}.academy-hero__panel{padding:26px;border-radius:28px}.academy-feature-grid,.academy-course-grid{grid-template-columns:1fr}.academy-stack{grid-template-columns:1fr}.academy-section-title,.academy-section-title--left{text-align:left}.academy-intro{padding-top:12px}.academy-course-card{border-radius:26px}.academy-roadmap{border-radius:26px;margin-bottom:48px}}
-/* Footer dédié à /academy : alignement vertical, espacements homogènes
-   et typographie cohérente avec la landing sans modifier le footer global. */
-.academy-footer{margin-top:0;background:linear-gradient(135deg,var(--green-950),var(--green-900))}
-.academy-footer .footer-container{align-items:start;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;justify-content:space-between;padding-top:58px;padding-bottom:54px}
-.academy-footer .footer-col{display:flex;min-width:0;flex-direction:column;align-items:flex-start;gap:0}
-.academy-footer .footer-brand{margin-bottom:12px}
-.academy-footer__brand{display:flex;align-items:center;min-height:34px;gap:12px;line-height:1}
-.academy-footer__brand h4{margin:0;font-size:1.04rem;line-height:1;letter-spacing:-.01em}
-.academy-footer .footer-col>h4{display:flex;align-items:center;min-height:34px;margin:0 0 12px;font-size:.98rem;line-height:1.15;letter-spacing:.01em}
-.academy-footer .footer-col p{max-width:280px;margin:0;color:rgba(255,255,255,.76);font-size:.91rem;line-height:1.65}
-.academy-footer .footer-col a{margin:0;color:rgba(255,255,255,.78);font-size:.91rem;line-height:1.45}
-.academy-footer .footer-col a+a{margin-top:9px}
-.academy-footer .footer-bottom{padding:18px 20px;line-height:1.4}
-@media(max-width:900px){.academy-footer .footer-container{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 32px;justify-content:start}.academy-footer .footer-col p{max-width:100%}}
-@media(max-width:620px){.academy-footer .footer-container{grid-template-columns:1fr;padding-top:42px;padding-bottom:40px;gap:26px;justify-content:start}.academy-footer .footer-col{width:100%}.academy-footer .footer-brand{margin-bottom:10px}.academy-footer .footer-col>h4{margin-bottom:10px}.academy-footer .footer-col a+a{margin-top:8px}}
+/* Footer Academy : réutilise la structure du footer principal avec un ajustement
+   léger du bloc marque pour garder l’identité Agri-Tech Academy compacte. */
+.academy-footer{margin-top:0;background:var(--green-900)}
+.academy-footer .footer-container{align-items:start;grid-template-columns:repeat(4,1fr);gap:30px;padding-top:58px;padding-bottom:58px}
+.academy-footer .footer-col{min-width:0}
+.academy-footer__brand{align-items:center;margin-bottom:12px}
+.academy-footer__brand-text{display:flex;flex-direction:column;gap:4px;line-height:1.05}
+.academy-footer__brand-text strong{color:#fff;font-size:1.05rem;font-weight:900;letter-spacing:-.01em}
+.academy-footer__brand-text small{color:rgba(255,255,255,.68);font-size:.78rem;font-weight:700;letter-spacing:.01em}
+.academy-footer .footer-col p{max-width:310px;margin:0}
+.academy-footer .footer-col h4{margin:0 0 12px;font-size:1rem;line-height:1.2;color:#fff}
+.academy-footer .footer-col a{line-height:1.45}
+.academy-footer .contact-list{gap:10px;margin-top:0}
+.academy-footer .contact-item{gap:10px}
+.academy-footer .footer-bottom{padding:20px}
+@media(max-width:900px){.academy-footer .footer-container{grid-template-columns:repeat(2,1fr);gap:30px}}
+@media(max-width:620px){.academy-footer .footer-container{grid-template-columns:1fr;padding-top:44px;padding-bottom:44px;gap:26px}.academy-footer .footer-col p{max-width:100%}}
+
 /* Pages publiques /academy/courses et détails de formation. */
 .academy-list-hero{max-width:980px;padding-top:88px;padding-bottom:34px}
 .academy-list-hero h1{max-width:880px;margin-bottom:18px;font-size:clamp(2.25rem,6vw,4.9rem);line-height:.94;letter-spacing:-.055em;color:var(--green-950)}
