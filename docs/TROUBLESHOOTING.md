@@ -35,9 +35,9 @@ Cette URL ne doit pas être utilisée comme base réelle. Elle sert seulement à
 
 ### 2. Scripts package.json stabilisés
 
-- `postinstall` génère Prisma Client après installation avec notre wrapper safe.
+- Le projet ne lance plus de `postinstall` racine afin de garder `npm install` aussi simple que possible.
 - `vercel.json` utilise `PRISMA_SKIP_POSTINSTALL_GENERATE=true npm install` pour éviter que le postinstall interne de `@prisma/client` échoue avant notre fallback.
-- `build` regénère Prisma Client puis lance `next build`.
+- `build` génère Prisma Client via le wrapper safe puis lance `next build`.
 - `prisma:generate` et `prisma:validate` passent par le wrapper safe.
 - `prisma` et `typescript` sont dans `dependencies` pour rester disponibles dans les environnements de build stricts.
 
@@ -169,3 +169,77 @@ npm config get registry
 env | grep -i proxy
 env | grep -i npm_config
 ```
+
+## Stabilisation infrastructure — checklist Vercel
+
+### Variables d’environnement minimales
+
+Pour un **Preview Deployment visible sans services réels**, Vercel peut builder avec :
+
+```env
+PAYMENT_PROVIDER=dev-simulated
+NEXT_PUBLIC_APP_URL=https://votre-preview.vercel.app
+```
+
+`DATABASE_URL`, `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` et `CLERK_SECRET_KEY` peuvent rester absentes pour vérifier l’affichage public et le mock checkout. Les pages utilisent les données statiques tant que la base n’est pas branchée.
+
+Pour un **Preview avec vrais paiements/enrollments**, ajouter :
+
+```env
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/agritech_academy?schema=public
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
+CLERK_SECRET_KEY=sk_test_...
+PAYMENT_PROVIDER=dev-simulated
+NEXT_PUBLIC_APP_URL=https://votre-preview.vercel.app
+```
+
+Pour la **production**, `DATABASE_URL`, Clerk et un provider paiement réel doivent être configurés. Le mode `dev-simulated` est refusé en production (`VERCEL_ENV=production`).
+
+### Clerk
+
+Le build actuel ne charge pas le SDK Clerk côté serveur. Les variables Clerk ne sont donc pas bloquantes pour `next build`, mais elles sont nécessaires pour activer une authentification réelle :
+
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/academy/login
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/academy/register
+NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL=/academy/dashboard
+NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL=/academy/dashboard
+```
+
+Si Clerk bloque une future Preview, vérifier que seules les clés publiques commencent par `NEXT_PUBLIC_` et que `CLERK_SECRET_KEY` reste côté serveur.
+
+### Prisma / PostgreSQL
+
+- `prisma` et `@prisma/client` sont alignés en version exacte `6.0.0`.
+- `scripts/prisma-generate-safe.js` fournit un `DATABASE_URL` factice uniquement pour `prisma generate` et `prisma validate`.
+- Le projet ne force pas de connexion PostgreSQL pendant le build des pages publiques.
+- `lib/prisma.ts` instancie Prisma de façon lazy : importer un module serveur ne crée pas immédiatement de connexion.
+
+Si `DATABASE_URL` est invalide en runtime, les pages checkout de Preview peuvent encore retomber sur les données statiques hors production. En production, corriger l’URL PostgreSQL au lieu de dépendre du fallback.
+
+### Paiement mock / providers réels
+
+- Sans `PAYMENT_PROVIDER` en local ou Preview, le provider par défaut est `dev-simulated`.
+- En Preview sans `DATABASE_URL`, le démarrage checkout redirige vers la page succès sans créer de `Payment` en base.
+- Aucune clé PayPal, MonCash ou Stripe n’est lue au build.
+- Les clés provider ne deviennent obligatoires que lorsque `PAYMENT_PROVIDER=paypal`, `moncash` ou `stripe` est activé côté serveur.
+- En production (`VERCEL_ENV=production`), `PAYMENT_PROVIDER` doit être explicitement configuré et le mock est refusé.
+
+### Vercel
+
+`vercel.json` force :
+
+```json
+{
+  "installCommand": "PRISMA_SKIP_POSTINSTALL_GENERATE=true npm install",
+  "buildCommand": "npm run build"
+}
+```
+
+La variable `PRISMA_SKIP_POSTINSTALL_GENERATE=true` évite que le postinstall interne de `@prisma/client` tente une génération Prisma avant notre script safe. La génération réelle est faite ensuite par `npm run build`.
+
+### Middleware
+
+Aucun `middleware.ts` Next.js n’est configuré actuellement. Il n’y a donc pas de middleware Clerk ou Edge susceptible de bloquer le build/preview. Si un middleware Clerk est ajouté plus tard, vérifier qu’il n’exécute pas Prisma et qu’il reste compatible Edge.

@@ -2,10 +2,14 @@ export type PaymentProvider = 'paypal' | 'moncash' | 'stripe' | 'dev-simulated';
 
 const SUPPORTED_PROVIDERS = new Set<PaymentProvider>(['paypal', 'moncash', 'stripe', 'dev-simulated']);
 
+export function isProductionDeployment() {
+  return process.env.VERCEL_ENV === 'production' || (process.env.NODE_ENV === 'production' && !process.env.VERCEL_ENV);
+}
+
 export function getPaymentProvider(): PaymentProvider {
   const configuredProvider = process.env.PAYMENT_PROVIDER?.trim().toLowerCase();
 
-  if (!configuredProvider && process.env.NODE_ENV !== 'production') {
+  if (!configuredProvider && !isProductionDeployment()) {
     return 'dev-simulated';
   }
 
@@ -28,7 +32,7 @@ export function getPaypalConfig() {
     clientId: requiredEnv('PAYPAL_CLIENT_ID'),
     clientSecret: requiredEnv('PAYPAL_CLIENT_SECRET'),
     webhookId: process.env.PAYPAL_WEBHOOK_ID,
-    baseUrl: process.env.NODE_ENV === 'production' ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com',
+    baseUrl: isProductionDeployment() ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com',
   };
 }
 

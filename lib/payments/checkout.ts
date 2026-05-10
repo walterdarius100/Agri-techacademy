@@ -1,5 +1,5 @@
 import prisma from '../prisma';
-import { getPaymentProvider } from './config';
+import { getPaymentProvider, isProductionDeployment } from './config';
 import { createProviderCheckout } from './providers';
 import { getCurrentPaymentUserId } from './session';
 import { getPublishedCourseBySlug } from './courses';
@@ -11,7 +11,7 @@ export async function createCheckoutSession({ courseSlug, successUrl, cancelUrl 
     throw new Error('Formation introuvable ou non publiée.');
   }
 
-  if (!process.env.DATABASE_URL && (process.env.VERCEL_ENV === 'preview' || process.env.NODE_ENV !== 'production')) {
+  if (!process.env.DATABASE_URL && !isProductionDeployment()) {
     return {
       provider: 'dev-simulated' as const,
       providerReference: `preview_${course.slug}`,

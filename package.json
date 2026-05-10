@@ -11,7 +11,6 @@
     "prisma:validate": "node scripts/prisma-generate-safe.js validate",
     "build": "node scripts/prisma-generate-safe.js && next build",
     "dev": "next dev",
-    "postinstall": "node scripts/prisma-generate-safe.js",
     "typecheck": "tsc --noEmit --pretty false",
     "lint": "tsc --noEmit --pretty false"
   },

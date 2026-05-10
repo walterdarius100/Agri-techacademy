@@ -84,12 +84,12 @@ La vérification cryptographique des webhooks PayPal, MonCash et Stripe doit êt
 
 ## Paiement simulé vs paiement réel
 
-En développement, si aucun `PAYMENT_PROVIDER` n’est défini, la plateforme utilise `dev-simulated`.
+En local ou en Vercel Preview, si aucun `PAYMENT_PROVIDER` n’est défini, la plateforme utilise `dev-simulated`.
 
 - Le checkout crée quand même un `Payment` en base.
 - L’utilisateur est redirigé vers `/api/payments/dev/simulate-success/[reference]`.
 - Cette route marque le paiement comme payé, crée l’inscription, puis redirige vers `/academy/payment/success`.
-- Cette route refuse le fonctionnement en production.
+- Cette route refuse le fonctionnement uniquement en production réelle (`VERCEL_ENV=production`).
 
 En paiement réel, l’utilisateur est redirigé vers le fournisseur. La validation finale doit venir du webhook fournisseur, pas uniquement de la page de succès affichée au navigateur.
 
@@ -114,7 +114,7 @@ Install Command: PRISMA_SKIP_POSTINSTALL_GENERATE=true npm install
 Build Command: npm run build
 ```
 
-Le script `postinstall` et le script `build` exécutent `node scripts/prisma-generate-safe.js`. L’install Vercel désactive d’abord l’auto-génération interne de `@prisma/client` pour éviter un échec avant l’injection du fallback `DATABASE_URL`. Ce script génère Prisma Client avec `DATABASE_URL` si elle existe. Si `DATABASE_URL` n’est pas encore configurée dans un environnement Preview, il utilise une URL PostgreSQL locale factice uniquement pour la génération du client Prisma. Cette valeur ne permet pas d’exécuter de requêtes réelles et ne remplace pas la configuration runtime.
+Le script `build` exécute `node scripts/prisma-generate-safe.js`. L’install Vercel désactive l’auto-génération interne de `@prisma/client` pour éviter un échec avant l’injection du fallback `DATABASE_URL`. Ce script génère Prisma Client avec `DATABASE_URL` si elle existe. Si `DATABASE_URL` n’est pas encore configurée dans un environnement Preview, il utilise une URL PostgreSQL locale factice uniquement pour la génération du client Prisma. Cette valeur ne permet pas d’exécuter de requêtes réelles et ne remplace pas la configuration runtime.
 
 Variables à définir dans Vercel pour tester un vrai flux avec base et authentification :
 

@@ -1,4 +1,4 @@
-import { getMonCashConfig, getPaypalConfig, getPaymentProvider, getStripeConfig } from './config';
+import { getMonCashConfig, getPaypalConfig, getPaymentProvider, getStripeConfig, isProductionDeployment } from './config';
 import type { CheckoutInput, CheckoutResult, PaymentConfirmation } from './types';
 import { buildAbsoluteUrl } from './urls';
 
@@ -120,7 +120,7 @@ async function createStripeCheckout(input: CheckoutInput): Promise<CheckoutResul
 }
 
 async function createDevCheckout(input: CheckoutInput): Promise<CheckoutResult> {
-  if (process.env.NODE_ENV === 'production') {
+  if (isProductionDeployment()) {
     throw new Error('Le paiement simulé est interdit en production.');
   }
 
@@ -170,7 +170,7 @@ async function parseStripeWebhook(request: Request): Promise<PaymentConfirmation
 }
 
 async function parseDevWebhook(request: Request): Promise<PaymentConfirmation> {
-  if (process.env.NODE_ENV === 'production') {
+  if (isProductionDeployment()) {
     throw new Error('Le webhook simulé est interdit en production.');
   }
 
