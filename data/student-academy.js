@@ -12,6 +12,9 @@ export const simulatedStudent = {
   enrolledCourseSlugs: ['cuniculture', 'apiculture']
 };
 
+const ENROLLMENTS_STORAGE_KEY = 'agritech.academy.enrollments.v1';
+const PAYMENTS_STORAGE_KEY = 'agritech.academy.payments.v1';
+
 export const studentCourses = [
   {
     slug: 'cuniculture',
@@ -118,11 +121,32 @@ export function getStudentCourseBySlug(slug) {
   };
 }
 
+function readMockStorage(key, fallback) {
+  if (typeof window === 'undefined') return fallback;
+
+  try {
+    const value = window.localStorage.getItem(key);
+    return value ? JSON.parse(value) : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+export function getMockEnrollmentSlugs() {
+  return readMockStorage(ENROLLMENTS_STORAGE_KEY, [])
+    .filter((item) => item?.status === 'active' && item?.courseSlug)
+    .map((item) => item.courseSlug);
+}
+
+export function getMockPaymentHistory() {
+  return readMockStorage(PAYMENTS_STORAGE_KEY, []);
+}
+
 export function getAccessibleStudentCourses(user = simulatedStudent) {
-  const enrolledCourseSlugs = user?.enrolledCourseSlugs ?? [];
+  const enrolledCourseSlugs = [...new Set([...(user?.enrolledCourseSlugs ?? []), ...getMockEnrollmentSlugs()])];
 
   return studentCourses
-    .filter((item) => item.access && enrolledCourseSlugs.includes(item.slug))
+    .filter((item) => (item.access || enrolledCourseSlugs.includes(item.slug)) && enrolledCourseSlugs.includes(item.slug))
     .map((item) => getStudentCourseBySlug(item.slug))
     .filter(Boolean);
 }
@@ -130,7 +154,8 @@ export function getAccessibleStudentCourses(user = simulatedStudent) {
 export function canAccessCourse(slug, user = simulatedStudent) {
   const learning = studentCourses.find((item) => item.slug === slug);
   const enrolledCourseSlugs = user?.enrolledCourseSlugs ?? [];
-  return Boolean(learning?.access && enrolledCourseSlugs.includes(slug));
+  const mockEnrollmentSlugs = getMockEnrollmentSlugs();
+  return Boolean((learning?.access || mockEnrollmentSlugs.includes(slug)) && [...enrolledCourseSlugs, ...mockEnrollmentSlugs].includes(slug));
 }
 
 export function getOverallProgress(user = simulatedStudent) {

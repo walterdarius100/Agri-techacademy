@@ -70,10 +70,7 @@ Dans Clerk, configurez les URLs adaptées à l’Academy :
 - After sign-in URL : `/academy/dashboard`
 - After sign-up URL : `/academy/dashboard`
 
-Pour le développement local, autorisez aussi votre origine locale, par exemple :
-
-- `http://localhost:3000`
-- `http://localhost:4173` si vous testez la version statique avec `python3 -m http.server 4173`
+Pour cette branche paiement, gardez les redirections applicatives en chemins relatifs Academy. Les origines de développement ne doivent pas être copiées dans le flow de paiement ni dans les variables de preview Vercel.
 
 En production, ajoutez le domaine Vercel final, par exemple :
 
