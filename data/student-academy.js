@@ -122,7 +122,7 @@ export function getAccessibleStudentCourses(user = simulatedStudent) {
   const enrolledCourseSlugs = user?.enrolledCourseSlugs ?? [];
 
   return studentCourses
-    .filter((item) => item.access && enrolledCourseSlugs.includes(item.slug))
+    .filter((item) => enrolledCourseSlugs.includes(item.slug))
     .map((item) => getStudentCourseBySlug(item.slug))
     .filter(Boolean);
 }
@@ -130,7 +130,7 @@ export function getAccessibleStudentCourses(user = simulatedStudent) {
 export function canAccessCourse(slug, user = simulatedStudent) {
   const learning = studentCourses.find((item) => item.slug === slug);
   const enrolledCourseSlugs = user?.enrolledCourseSlugs ?? [];
-  return Boolean(learning?.access && enrolledCourseSlugs.includes(slug));
+  return Boolean(learning && enrolledCourseSlugs.includes(slug));
 }
 
 export function getOverallProgress(user = simulatedStudent) {

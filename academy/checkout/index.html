@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Checkout mock de l’Académie Agri-Tech pour valider l’inscription à une formation." />
+  <meta name="theme-color" content="#0f3d2e" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Checkout | Académie Agri-Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../academy.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu principal</a>
+  <header class="site-header" id="top">
+    <nav class="navbar" aria-label="Navigation principale Académie Agri-Tech">
+      <a class="brand" href="../../" aria-label="Retour à l’accueil Agri-Tech">
+        <span class="brand-mark"><img src="../../assets/images/logo-agritech.png" alt="" aria-hidden="true" width="127" height="96" decoding="async" fetchpriority="high" /></span>
+        <span class="brand-text"><strong>Agri-tech</strong><small>Académie</small></span>
+      </a>
+      <button class="menu-btn" id="academyMenuBtn" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="academyNavLinks">☰</button>
+      <div class="nav-links" id="academyNavLinks">
+        <a href="../">Académie</a>
+        <a href="../courses/">Formations</a>
+        <a href="../login/">Connexion</a>
+        <a href="../register/" class="nav-cta">Créer un compte</a>
+      </div>
+    </nav>
+  </header>
+  <main id="main" class="academy-main">
+    <div id="checkoutRoot" aria-live="polite"></div>
+  </main>
+  <script type="module" src="./checkout.js"></script>
+</body>
+</html>

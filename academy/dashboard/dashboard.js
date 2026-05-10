@@ -1,4 +1,5 @@
 import { requireAuth, updateAcademyAuthNavigation } from '../../lib/academy-auth.js';
+import { getPaymentHistory } from '../../lib/academy-payments.js';
 import { escapeHtml } from '../../lib/html.js';
 import { getAccessibleStudentCourses, getOverallProgress, simulatedStudent } from '../../data/student-academy.js';
 
@@ -32,6 +33,7 @@ function renderDashboard() {
   const overallProgress = getOverallProgress(authUser);
   const completedCourses = courses.filter((course) => course.progress >= 100).length;
   const activeCourses = courses.filter((course) => course.progress > 0 && course.progress < 100).length;
+  const payments = getPaymentHistory(authUser).slice(0, 3);
 
   dashboardRoot.innerHTML = `
     <section class="student-hero section-pad" aria-labelledby="student-dashboard-title">
@@ -94,6 +96,33 @@ function renderDashboard() {
           .join('')}
       </div>
     </section>
+
+    <section class="section-pad student-dashboard-grid" aria-labelledby="student-payments-title">
+      <div class="academy-section-title academy-section-title--left">
+        <span class="eyebrow">Paiements</span>
+        <h2 id="student-payments-title">Historique mock récent.</h2>
+        <p>Ces lignes préparent les futures écritures PostgreSQL/Prisma et les webhooks des providers de paiement.</p>
+      </div>
+      <div class="student-course-mini-list">
+        ${payments.length > 0
+          ? payments
+              .map(
+                (payment) => `
+                  <article class="student-course-row">
+                    <div>
+                      <span>${escapeHtml(payment.status === 'paid' ? 'Payé' : 'Annulé')}</span>
+                      <h3>${escapeHtml(payment.courseTitle)}</h3>
+                      <p>${escapeHtml(payment.id)} · ${escapeHtml(payment.amountLabel)} · ${escapeHtml(payment.provider)}</p>
+                    </div>
+                    <a href="../my-courses/${escapeHtml(payment.courseSlug)}/" class="btn secondary academy-cta academy-cta--light">Cours</a>
+                  </article>
+                `
+              )
+              .join('')
+          : '<article class="student-course-row"><div><span>Aucun paiement</span><h3>Historique vide pour cette session.</h3><p>Un paiement mock réussi apparaîtra ici automatiquement.</p></div><a href="../courses/" class="btn secondary academy-cta academy-cta--light">Catalogue</a></article>'}
+      </div>
+    </section>
+
   `;
 }
 

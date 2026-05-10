@@ -1,5 +1,6 @@
 import {
   continueWithGoogleOAuth,
+  getGoogleOAuthDiagnostic,
   getRedirectTarget,
   isAuthenticated,
   loginWithMockCredentials,
@@ -138,7 +139,8 @@ function initGoogleOAuthButtons() {
         const result = await continueWithGoogleOAuth({ mode: button.dataset.authMode });
 
         if (!result.ok) {
-          setFormMessage(form, result.message);
+          const diagnostic = getGoogleOAuthDiagnostic();
+          setFormMessage(form, `${result.message} (${diagnostic.code})`);
           setGoogleButtonLoading(button, false);
         }
       } catch (error) {
