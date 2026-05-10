@@ -5,10 +5,11 @@
   "description": "Fondation web et academy pour Agri-Tech.",
   "scripts": {
     "check": "npm run prisma:validate && node --check prisma/seed.js",
-    "prisma:generate": "prisma generate",
+    "prisma:generate": "sh -c 'DATABASE_URL=${DATABASE_URL:-postgresql://user:password@db:5432/agritech_academy?schema=public} prisma generate'",
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "prisma db seed",
-    "prisma:validate": "prisma validate"
+    "prisma:validate": "sh -c 'DATABASE_URL=${DATABASE_URL:-postgresql://user:password@db:5432/agritech_academy?schema=public} prisma validate'",
+    "build": "npm run check"
   },
   "dependencies": {
     "@prisma/client": "^6.0.0"

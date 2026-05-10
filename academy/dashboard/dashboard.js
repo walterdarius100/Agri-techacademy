@@ -1,6 +1,8 @@
 import { requireAuth, updateAcademyAuthNavigation } from '../../lib/academy-auth.js';
 import { escapeHtml } from '../../lib/html.js';
 import { getAccessibleStudentCourses, getOverallProgress, simulatedStudent } from '../../data/student-academy.js';
+import { formatMoney } from '../../lib/payments/index.js';
+import { getPaymentsForUser } from '../../lib/payments/store.js';
 
 const authUser = requireAuth({ loginPath: '../login/' });
 const dashboardRoot = document.querySelector('#studentDashboardRoot');
@@ -32,6 +34,7 @@ function renderDashboard() {
   const overallProgress = getOverallProgress(authUser);
   const completedCourses = courses.filter((course) => course.progress >= 100).length;
   const activeCourses = courses.filter((course) => course.progress > 0 && course.progress < 100).length;
+  const payments = getPaymentsForUser(authUser.id).slice(0, 3);
 
   dashboardRoot.innerHTML = `
     <section class="student-hero section-pad" aria-labelledby="student-dashboard-title">
@@ -68,6 +71,44 @@ function renderDashboard() {
         <h2>Terminés</h2>
         <p>Compteur prêt pour les futurs certificats et validations.</p>
       </article>
+    </section>
+
+
+
+    <section class="section-pad payment-dashboard-section" aria-labelledby="payment-dashboard-title">
+      <div class="academy-section-title academy-section-title--left">
+        <span class="eyebrow">Paiements</span>
+        <h2 id="payment-dashboard-title">Historique récent.</h2>
+        <p>Suivez les achats validés et reprenez rapidement les formations activées.</p>
+      </div>
+      <div class="payment-history__table">
+        ${payments.length
+          ? payments
+              .map(
+                (payment) => `
+                  <article class="payment-history__row">
+                    <div>
+                      <span>Formation</span>
+                      <strong>${escapeHtml(payment.courseTitle)}</strong>
+                    </div>
+                    <div>
+                      <span>Montant</span>
+                      <strong>${formatMoney(payment.amountCents, payment.currency)}</strong>
+                    </div>
+                    <div>
+                      <span>Statut</span>
+                      <strong>${escapeHtml(payment.status)}</strong>
+                    </div>
+                    <a href="../my-courses/${escapeHtml(payment.courseSlug)}/" class="btn secondary academy-cta academy-cta--light">Voir le cours</a>
+                  </article>
+                `
+              )
+              .join('')
+          : '<article class="payment-history__row"><div><span>Aucun achat</span><strong>Votre historique apparaîtra après un paiement validé.</strong></div><a href="../courses/" class="btn secondary academy-cta academy-cta--light">Explorer</a></article>'}
+      </div>
+      <div class="hero-actions academy-hero__actions">
+        <a href="../payments/history/" class="btn primary academy-cta">Voir tout l’historique</a>
+      </div>
     </section>
 
     <section class="section-pad student-dashboard-grid" aria-labelledby="student-next-title">
