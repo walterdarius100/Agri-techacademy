@@ -104,3 +104,25 @@ En paiement réel, l’utilisateur est redirigé vers le fournisseur. La validat
 7. Vérifier que l’utilisateur authentifié Clerk est correctement relié au modèle `User` avant d’autoriser les paiements live.
 8. Désactiver toute simulation en production et refuser `dev-simulated` dans les variables live.
 9. Surveiller les logs de webhook et les statuts `Payment`/`Enrollment` après les premiers paiements réels.
+
+## Notes Vercel Preview
+
+Build command recommandé :
+
+```bash
+npm run build
+```
+
+Le script `postinstall` et le script `build` exécutent `node scripts/prisma-generate-safe.js`. Ce script génère Prisma Client avec `DATABASE_URL` si elle existe. Si `DATABASE_URL` n’est pas encore configurée dans un environnement Preview, il utilise une URL PostgreSQL locale factice uniquement pour la génération du client Prisma. Cette valeur ne permet pas d’exécuter de requêtes réelles et ne remplace pas la configuration runtime.
+
+Variables à définir dans Vercel pour tester un vrai flux avec base et authentification :
+
+```env
+DATABASE_URL=
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+PAYMENT_PROVIDER=dev-simulated
+NEXT_PUBLIC_APP_URL=https://votre-preview.vercel.app
+```
+
+Les clés PayPal, MonCash et Stripe peuvent rester vides tant que `PAYMENT_PROVIDER` n’active pas le fournisseur réel. Pour une Preview sans fournisseur réel, utilisez `dev-simulated` ou laissez `PAYMENT_PROVIDER` vide en dehors de la production.

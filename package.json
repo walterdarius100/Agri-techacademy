@@ -9,9 +9,9 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "prisma db seed",
     "prisma:validate": "prisma validate",
-    "build": "prisma generate && next build",
+    "build": "node scripts/prisma-generate-safe.js && next build",
     "dev": "next dev",
-    "postinstall": "prisma generate"
+    "postinstall": "node scripts/prisma-generate-safe.js"
   },
   "dependencies": {
     "@prisma/client": "^6.0.0",
