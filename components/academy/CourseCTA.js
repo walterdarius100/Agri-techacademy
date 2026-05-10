@@ -6,11 +6,11 @@ export function CourseCTA(course) {
       <div>
         <span class="eyebrow">Inscription</span>
         <h2 id="course-cta-title">Prêt à rejoindre la formation&nbsp;?</h2>
-        <p>Finalisez l’inscription via le checkout sécurisé de l’Academy. L’accès au cours sera activé automatiquement après validation du paiement.</p>
+        <p>Les inscriptions complètes seront activées plus tard. Pour l’instant, ce bouton prépare le parcours public sans paiement, compte étudiant ou dashboard.</p>
       </div>
       <div class="academy-course-cta__actions">
         <span>${escapeHtml(course.status)}</span>
-        <a href="../../checkout/${escapeHtml(course.slug)}/" class="btn primary academy-cta">Acheter / s’inscrire</a>
+        <a href="../../checkout/${escapeHtml(course.slug)}/" class="btn primary academy-cta">S’inscrire à la formation</a>
       </div>
     </section>
   `;
