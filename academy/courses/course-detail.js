@@ -1,3 +1,4 @@
+import { updateAcademyAuthNavigation } from '../../lib/academy-auth.js';
 import { CourseCTA } from '../../components/academy/CourseCTA.js';
 import { CourseDetailHero } from '../../components/academy/CourseDetailHero.js';
 import { CourseModuleList } from '../../components/academy/CourseModuleList.js';
@@ -90,4 +91,5 @@ function renderCourseDetailPage() {
 }
 
 renderCourseDetailPage();
+updateAcademyAuthNavigation({ loginHref: '../../login/', registerHref: '../../register/', dashboardHref: '../../dashboard/', myCoursesHref: '../../my-courses/', logoutRedirectHref: '../../login/' });
 initAcademyNavigation();

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Création de compte étudiant mock pour l’Académie Agri-Tech." />
+  <meta name="theme-color" content="#0f3d2e" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Créer un compte | Académie Agri-Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../academy.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu principal</a>
+  <header class="site-header" id="top">
+    <nav class="navbar" aria-label="Navigation principale Académie Agri-Tech">
+      <a class="brand" href="../../" aria-label="Retour à l’accueil Agri-Tech"><span class="brand-mark"><img src="../../assets/images/logo-agritech.png" alt="" aria-hidden="true" width="127" height="96" decoding="async" fetchpriority="high" /></span><span class="brand-text"><strong>Agri-tech</strong><small>Académie</small></span></a>
+      <button class="menu-btn" id="academyMenuBtn" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="academyNavLinks">☰</button>
+      <div class="nav-links" id="academyNavLinks"><a href="../">Académie</a><a href="../courses/">Formations</a><a href="../login/" class="nav-cta">Connexion</a></div>
+    </nav>
+  </header>
+  <main id="main" class="academy-main auth-main">
+    <section class="auth-layout section-pad" aria-labelledby="register-title">
+      <div class="auth-copy reveal is-visible">
+        <span class="eyebrow">Inscription Academy</span>
+        <h1 id="register-title">Créez un accès prêt pour les futurs cours payants.</h1>
+        <p>Le compte créé ici reste mock/local, mais son modèle prévoit déjà rôle étudiant, permissions, statut d’accès, statut de paiement et inscriptions cours.</p>
+        <ul class="auth-benefits"><li>Accès immédiat au dashboard protégé</li><li>Progression cours simulée</li><li>Structure prête pour PostgreSQL et paiement</li></ul>
+      </div>
+      <form class="auth-card" id="academyRegisterForm" novalidate>
+        <div class="auth-card__header"><span class="academy-pill">Nouveau compte</span><h2>Commencer</h2><p>Validez vos informations pour ouvrir l’espace étudiant.</p></div>
+        <div class="auth-message" data-auth-message hidden></div>
+        <label class="auth-field"><span>Nom complet</span><input type="text" name="name" autocomplete="name" placeholder="Votre nom" required /><small class="auth-field__error" aria-live="polite"></small></label>
+        <label class="auth-field"><span>Email</span><input type="email" name="email" autocomplete="email" placeholder="vous@exemple.com" required /><small class="auth-field__error" aria-live="polite"></small></label>
+        <label class="auth-field"><span>Mot de passe</span><input type="password" name="password" autocomplete="new-password" minlength="6" placeholder="Lettres et chiffres" required /><small class="auth-field__error" aria-live="polite"></small></label>
+        <label class="auth-check auth-check--boxed"><input type="checkbox" name="terms" required /> <span>J’accepte la création d’un compte local de démonstration, sans paiement réel.</span></label>
+        <button class="btn primary academy-cta auth-submit" type="submit" data-submit-label="Créer mon compte" data-loading-label="Création…">Créer mon compte</button>
+        <div class="auth-divider"><span>ou continuer avec Google</span></div>
+        <button class="auth-google-button" type="button" data-google-auth data-auth-mode="sign-up" data-google-submit-label="Continuer avec Google" data-google-loading-label="Ouverture de Google…"><span class="auth-google-icon" aria-hidden="true">G</span><span data-google-label>Continuer avec Google</span></button>
+        <p class="auth-switch">Déjà inscrit ? <a href="../login/">Se connecter</a></p>
+      </form>
+    </section>
+  </main>
+  <script type="module" src="../auth-pages.js"></script>
+</body>
+</html>
