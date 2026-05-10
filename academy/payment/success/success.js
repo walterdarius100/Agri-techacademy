@@ -26,11 +26,13 @@ function renderSuccess() {
   root.innerHTML = `
     <section class="section-pad payment-result" aria-labelledby="payment-success-title">
       <div class="payment-result__card">
-        <span class="payment-result__icon" aria-hidden="true">✓</span>
-        <span class="eyebrow">Paiement validé</span>
+        <div class="payment-result__status">
+          <span class="payment-result__icon payment-result__icon--success" aria-hidden="true">✓</span>
+          <span class="eyebrow">Paiement validé</span>
+        </div>
         <h1 id="payment-success-title">Votre accès à ${escapeHtml(title)} est activé.</h1>
         <p>Le paiement mock a créé l’inscription, ajouté la formation à votre espace étudiant et préparé l’email de confirmation.</p>
-        ${payment ? `<div class="payment-receipt"><span>Référence</span><strong>${escapeHtml(payment.reference)}</strong><span>Montant</span><strong>${formatMoney(payment.amountCents, payment.currency)}</strong></div>` : ''}
+        ${payment ? `<div class="payment-receipt"><div><span>Formation</span><strong>${escapeHtml(payment.courseTitle || title)}</strong></div><div><span>Référence</span><strong class="payment-reference">${escapeHtml(payment.reference)}</strong></div><div><span>Montant</span><strong>${formatMoney(payment.amountCents, payment.currency)}</strong></div></div>` : ''}
         <div class="hero-actions academy-hero__actions payment-result__actions">
           <a href="../../my-courses/" class="btn primary academy-cta">Aller vers Mes formations</a>
           <a href="../../dashboard/" class="btn secondary academy-cta academy-cta--light">Aller vers Dashboard</a>
