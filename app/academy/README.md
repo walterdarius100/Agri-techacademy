@@ -2,7 +2,7 @@
 
 La branche contient maintenant une base Next.js minimale détectable par Vercel.
 
-Le design Academy validé reste servi depuis les fichiers statiques `academy/**` pendant la migration progressive. Le route handler `app/[[...path]]/route.ts` expose ces fichiers sans les redessiner.
+Le design Academy validé reste servi depuis les fichiers statiques `academy/**` pendant la migration progressive. `app/page.tsx` expose la page d’accueil existante, et le route handler `app/[...path]/route.ts` expose les autres fichiers sans les redessiner.
 
 Cibles futures de migration App Router :
 

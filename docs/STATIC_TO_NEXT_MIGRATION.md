@@ -6,7 +6,7 @@ Cette branche est désormais détectable comme application Next.js par Vercel, m
 
 Oui, la branche doit être une application Next.js minimale maintenant, car Vercel attend `next`, `react`, `react-dom`, un script `next build` et une configuration App Router détectable.
 
-Pour éviter une dérive visuelle, la migration UI n’est pas faite dans ce changement. Le route handler `app/[[...path]]/route.ts` sert les fichiers statiques actuels depuis le repo afin de préserver l’existant pendant que les pages sont migrées une par une.
+Pour éviter une dérive visuelle, la migration UI n’est pas faite dans ce changement. Le `app/page.tsx` sert la page d’accueil statique et le route handler `app/[...path]/route.ts` sert les autres fichiers statiques actuels depuis le repo afin de préserver l’existant pendant que les pages sont migrées une par une.
 
 ## Fichiers statiques à migrer progressivement
 
