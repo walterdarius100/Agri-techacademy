@@ -117,3 +117,55 @@ npm run lint
 ```
 
 Note : `npm run lint` lance actuellement `tsc --noEmit --pretty false` afin de bloquer les erreurs TypeScript en attendant une configuration ESLint complète.
+
+## Diagnostic npm 403 sur `@prisma/client`
+
+Erreur observée dans l’environnement Codex :
+
+```text
+npm ERR! 403 Forbidden - GET https://registry.npmjs.org/@prisma%2fclient
+```
+
+Vérifications effectuées :
+
+- Aucun `.npmrc` projet ou utilisateur n’était présent avant correction.
+- `npm config get registry` retournait déjà `https://registry.npmjs.org/`.
+- Le projet n’a pas de `package-lock.json` généré, car `npm install` n’a pas pu aboutir dans l’environnement bloqué.
+- `@prisma/client` n’est pas une dépendance privée et le scope `@prisma` doit être résolu depuis le registry public npm.
+- Le 403 local vient de la configuration réseau/proxy injectée dans l’environnement Codex (`http-proxy` / `https-proxy` vers `http://proxy:8080`). Quand ces variables proxy sont retirées, l’accès échoue avec `EAI_AGAIN`, ce qui confirme un blocage réseau externe plutôt qu’un problème de package privé.
+
+Corrections appliquées :
+
+1. Ajout d’un `.npmrc` projet pour forcer explicitement le registry public :
+
+   ```ini
+   registry=https://registry.npmjs.org/
+   @prisma:registry=https://registry.npmjs.org/
+   strict-ssl=true
+   fund=false
+   audit=false
+   ```
+
+2. Alignement strict des versions Prisma :
+
+   ```json
+   "@prisma/client": "6.0.0",
+   "prisma": "6.0.0"
+   ```
+
+Commandes à relancer dans un environnement avec accès npm public :
+
+```bash
+npm install
+npx prisma generate
+npm run build
+npm run check
+```
+
+Si `npm install` échoue encore avec un 403 malgré `.npmrc`, vérifier les variables d’environnement CI suivantes et les supprimer/corriger si elles pointent vers un proxy ou registry privé :
+
+```bash
+npm config get registry
+env | grep -i proxy
+env | grep -i npm_config
+```
