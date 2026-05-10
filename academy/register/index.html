@@ -33,13 +33,13 @@
       <form class="auth-card" id="academyRegisterForm" novalidate>
         <div class="auth-card__header"><span class="academy-pill">Nouveau compte</span><h2>Commencer</h2><p>Validez vos informations pour ouvrir l’espace étudiant.</p></div>
         <div class="auth-message" data-auth-message hidden></div>
-        <button class="auth-google-button" type="button" data-google-auth data-auth-mode="sign-up" data-google-submit-label="Continuer avec Google" data-google-loading-label="Ouverture de Google…"><span class="auth-google-icon" aria-hidden="true">G</span><span data-google-label>Continuer avec Google</span></button>
-        <div class="auth-divider"><span>ou créer un compte avec votre email</span></div>
         <label class="auth-field"><span>Nom complet</span><input type="text" name="name" autocomplete="name" placeholder="Votre nom" required /><small class="auth-field__error" aria-live="polite"></small></label>
         <label class="auth-field"><span>Email</span><input type="email" name="email" autocomplete="email" placeholder="vous@exemple.com" required /><small class="auth-field__error" aria-live="polite"></small></label>
         <label class="auth-field"><span>Mot de passe</span><input type="password" name="password" autocomplete="new-password" minlength="6" placeholder="Lettres et chiffres" required /><small class="auth-field__error" aria-live="polite"></small></label>
         <label class="auth-check auth-check--boxed"><input type="checkbox" name="terms" required /> <span>J’accepte la création d’un compte local de démonstration, sans paiement réel.</span></label>
         <button class="btn primary academy-cta auth-submit" type="submit" data-submit-label="Créer mon compte" data-loading-label="Création…">Créer mon compte</button>
+        <div class="auth-divider"><span>ou continuer avec Google</span></div>
+        <button class="auth-google-button" type="button" data-google-auth data-auth-mode="sign-up" data-google-submit-label="Continuer avec Google" data-google-loading-label="Ouverture de Google…"><span class="auth-google-icon" aria-hidden="true">G</span><span data-google-label>Continuer avec Google</span></button>
         <p class="auth-switch">Déjà inscrit ? <a href="../login/">Se connecter</a></p>
       </form>
     </section>
