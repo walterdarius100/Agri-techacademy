@@ -1,6 +1,8 @@
+import { requireAuth, updateAcademyAuthNavigation } from '../../lib/academy-auth.js';
 import { escapeHtml } from '../../lib/html.js';
 import { getAccessibleStudentCourses, simulatedStudent } from '../../data/student-academy.js';
 
+const authUser = requireAuth({ loginPath: '../login/' });
 const myCoursesRoot = document.querySelector('#myCoursesRoot');
 
 function initAcademyNavigation() {
@@ -26,13 +28,13 @@ function renderProgressBar(progress, label) {
 function renderMyCourses() {
   if (!myCoursesRoot) return;
 
-  const courses = getAccessibleStudentCourses();
+  const courses = getAccessibleStudentCourses(authUser);
 
   myCoursesRoot.innerHTML = `
     <section class="academy-list-hero student-list-hero section-pad" aria-labelledby="my-courses-title">
-      <span class="eyebrow">${escapeHtml(simulatedStudent.role)}</span>
+      <span class="eyebrow">${escapeHtml(authUser?.role === 'student' ? 'Étudiant connecté' : simulatedStudent.role)}</span>
       <h1 id="my-courses-title">Mes formations accessibles.</h1>
-      <p>Cette page simule les cours inscrits, leur progression et les liens de reprise. Aucun paiement, login ou stockage réel n’est encore activé.</p>
+      <p>Cette page utilise une session locale temporaire pour simuler les cours inscrits, leur progression et les liens de reprise avant le backend réel.</p>
       <div class="hero-actions academy-hero__actions">
         <a href="../dashboard/" class="btn secondary academy-cta academy-cta--light">Retour dashboard</a>
         <a href="../courses/" class="btn primary academy-cta">Voir le catalogue public</a>
@@ -70,5 +72,8 @@ function renderMyCourses() {
   `;
 }
 
-renderMyCourses();
-initAcademyNavigation();
+if (authUser) {
+  updateAcademyAuthNavigation({ loginHref: '../login/', registerHref: '../register/', dashboardHref: '../dashboard/', myCoursesHref: './', logoutRedirectHref: '../login/' });
+  renderMyCourses();
+  initAcademyNavigation();
+}

@@ -118,20 +118,23 @@ export function getStudentCourseBySlug(slug) {
   };
 }
 
-export function getAccessibleStudentCourses() {
+export function getAccessibleStudentCourses(user = simulatedStudent) {
+  const enrolledCourseSlugs = user?.enrolledCourseSlugs ?? [];
+
   return studentCourses
-    .filter((item) => item.access && simulatedStudent.enrolledCourseSlugs.includes(item.slug))
+    .filter((item) => item.access && enrolledCourseSlugs.includes(item.slug))
     .map((item) => getStudentCourseBySlug(item.slug))
     .filter(Boolean);
 }
 
-export function canAccessCourse(slug) {
+export function canAccessCourse(slug, user = simulatedStudent) {
   const learning = studentCourses.find((item) => item.slug === slug);
-  return Boolean(learning?.access && simulatedStudent.enrolledCourseSlugs.includes(slug));
+  const enrolledCourseSlugs = user?.enrolledCourseSlugs ?? [];
+  return Boolean(learning?.access && enrolledCourseSlugs.includes(slug));
 }
 
-export function getOverallProgress() {
-  const accessibleCourses = getAccessibleStudentCourses();
+export function getOverallProgress(user = simulatedStudent) {
+  const accessibleCourses = getAccessibleStudentCourses(user);
 
   if (accessibleCourses.length === 0) return 0;
 

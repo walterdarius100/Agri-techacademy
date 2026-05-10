@@ -1,3 +1,4 @@
+import { updateAcademyAuthNavigation } from '../lib/academy-auth.js';
 import { AcademyHero } from '../components/academy/AcademyHero.js';
 import { CourseList } from '../components/academy/CourseList.js';
 import { SectionTitle } from '../components/academy/SectionTitle.js';
@@ -90,4 +91,5 @@ function initAcademyNavigation() {
   });
 }
 
+updateAcademyAuthNavigation({ loginHref: './login/', registerHref: './register/', dashboardHref: './dashboard/', myCoursesHref: './my-courses/', logoutRedirectHref: './login/' });
 initAcademyNavigation();
