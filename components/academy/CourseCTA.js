@@ -1,7 +1,7 @@
 import { escapeHtml } from '../../lib/html.js';
 
 /**
- * CTA public temporaire : aucune authentification ni paiement n’est déclenché.
+ * CTA public vers le checkout mock, sans paiement réel ni fournisseur externe.
  */
 export function CourseCTA(course) {
   return `
@@ -9,11 +9,11 @@ export function CourseCTA(course) {
       <div>
         <span class="eyebrow">Inscription</span>
         <h2 id="course-cta-title">Prêt à rejoindre la formation&nbsp;?</h2>
-        <p>Les inscriptions complètes seront activées plus tard. Pour l’instant, ce bouton prépare le parcours public sans paiement, compte étudiant ou dashboard.</p>
+        <p>Le checkout mock active l’accès de démonstration sans paiement réel, sans clé sensible et sans appel fournisseur.</p>
       </div>
       <div class="academy-course-cta__actions">
         <span>${escapeHtml(course.status)}</span>
-        <a href="../../../#contact" class="btn primary academy-cta">S’inscrire à la formation</a>
+        <a href="../../checkout/${escapeHtml(course.slug)}/" class="btn primary academy-cta">S’inscrire à la formation</a>
       </div>
     </section>
   `;

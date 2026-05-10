@@ -13,7 +13,15 @@ export const courses = [
     duration: '4 semaines · 8 modules',
     level: 'Débutant à intermédiaire',
     status: 'Bientôt disponible',
-    price: 'Prix de lancement à confirmer',
+    price: '49 USD · paiement mock',
+    priceAmount: 49,
+    priceCurrency: 'USD',
+    checkoutBenefits: [
+      'Accès immédiat aux modules de cuniculture après confirmation mock.',
+      'Fiches pratiques pour budget, hygiène et organisation du clapier.',
+      'Parcours adapté aux petits espaces et au contexte local.',
+      'Historique paiement et accès préparés pour la future base de données.'
+    ],
     image: '../../../assets/images/formation-cuniculture.jpg',
     listImage: '../../assets/images/formation-cuniculture.jpg',
     description:
@@ -46,7 +54,15 @@ export const courses = [
     duration: '5 semaines · 9 modules',
     level: 'Débutant à pratique',
     status: 'Bientôt disponible',
-    price: 'Préinscription gratuite bientôt ouverte',
+    price: '39 USD · paiement mock',
+    priceAmount: 39,
+    priceCurrency: 'USD',
+    checkoutBenefits: [
+      'Accès mock aux bases du bâtiment, démarrage et suivi sanitaire.',
+      'Repères pratiques pour limiter les pertes et suivre les performances.',
+      'Progression préparée pour l’espace étudiant.',
+      'Enrollment simulé avant connexion Prisma/PostgreSQL.'
+    ],
     image: '../../../assets/images/formation-poulet.jpg',
     listImage: '../../assets/images/formation-poulet.jpg',
     description:
@@ -79,7 +95,15 @@ export const courses = [
     duration: '4 semaines · 7 modules',
     level: 'Débutant',
     status: 'Bientôt disponible',
-    price: 'Tarif temporaire à annoncer',
+    price: '29 USD · paiement mock',
+    priceAmount: 29,
+    priceCurrency: 'USD',
+    checkoutBenefits: [
+      'Accès mock aux fondamentaux du rucher et de la conduite des colonies.',
+      'Ressources de sécurité et registres prêtes pour l’espace étudiant.',
+      'Parcours simple pour démarrer sans complexité technique.',
+      'Architecture prête pour un vrai paiement et une vraie inscription.'
+    ],
     image: '../../../assets/images/formation-apiculture.jpg',
     listImage: '../../assets/images/formation-apiculture.jpg',
     description:
