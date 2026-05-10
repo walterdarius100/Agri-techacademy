@@ -243,3 +243,45 @@ La variable `PRISMA_SKIP_POSTINSTALL_GENERATE=true` évite que le postinstall in
 ### Middleware
 
 Aucun `middleware.ts` Next.js n’est configuré actuellement. Il n’y a donc pas de middleware Clerk ou Edge susceptible de bloquer le build/preview. Si un middleware Clerk est ajouté plus tard, vérifier qu’il n’exécute pas Prisma et qu’il reste compatible Edge.
+
+## Diagnostic Auth Clerk / Google OAuth
+
+### Routes à tester
+
+- `/academy/login` : formulaire email, bouton **Continuer avec Google**, lien vers l’inscription.
+- `/academy/register` : formulaire inscription, validation nom/email/mot de passe/conditions, bouton **Continuer avec Google**.
+- `/academy/dashboard` : page privée; redirige vers `/academy/login?redirect=/academy/dashboard` si aucune session locale ou Clerk n’est détectée.
+- `/academy/my-courses` : page privée; redirige vers `/academy/login?redirect=/academy/my-courses` si aucune session locale ou Clerk n’est détectée.
+
+### Variables Clerk nécessaires
+
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_... ou pk_live_...
+CLERK_SECRET_KEY=sk_test_... ou sk_live_...
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/academy/login
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/academy/register
+NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL=/academy/dashboard
+NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL=/academy/dashboard
+```
+
+La clé publique est injectée dans les pages App Router login/register/dashboard/my-courses. Le SDK ClerkJS est chargé côté navigateur uniquement quand `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` existe.
+
+### Google OAuth
+
+Checklist Clerk Dashboard :
+
+1. Activer **Google** dans **User & Authentication > Social connections**.
+2. Vérifier que le domaine Vercel Preview est autorisé côté Clerk.
+3. Vérifier que les URLs après authentification pointent vers `/academy/dashboard`.
+4. Ouvrir la console navigateur : une erreur `Google OAuth nécessite NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` indique que la clé publique n’est pas exposée à la Preview.
+5. Une erreur Google de type redirect mismatch indique généralement une URL OAuth non autorisée côté Google/Clerk, pas un problème de formulaire.
+
+### Mode fallback local
+
+Si `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` est absent, les formulaires email utilisent le mock local pour permettre de tester la navigation sans bloquer le preview :
+
+```text
+demo@agritech.academy / academy123
+```
+
+Ce fallback ne remplace pas Clerk en production; il sert uniquement à diagnostiquer l’UI et les redirections privées.
