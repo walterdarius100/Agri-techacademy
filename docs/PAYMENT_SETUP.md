@@ -107,13 +107,14 @@ En paiement réel, l’utilisateur est redirigé vers le fournisseur. La validat
 
 ## Notes Vercel Preview
 
-Build command recommandé :
+Commandes Vercel recommandées :
 
 ```bash
-npm run build
+Install Command: PRISMA_SKIP_POSTINSTALL_GENERATE=true npm install
+Build Command: npm run build
 ```
 
-Le script `postinstall` et le script `build` exécutent `node scripts/prisma-generate-safe.js`. Ce script génère Prisma Client avec `DATABASE_URL` si elle existe. Si `DATABASE_URL` n’est pas encore configurée dans un environnement Preview, il utilise une URL PostgreSQL locale factice uniquement pour la génération du client Prisma. Cette valeur ne permet pas d’exécuter de requêtes réelles et ne remplace pas la configuration runtime.
+Le script `postinstall` et le script `build` exécutent `node scripts/prisma-generate-safe.js`. L’install Vercel désactive d’abord l’auto-génération interne de `@prisma/client` pour éviter un échec avant l’injection du fallback `DATABASE_URL`. Ce script génère Prisma Client avec `DATABASE_URL` si elle existe. Si `DATABASE_URL` n’est pas encore configurée dans un environnement Preview, il utilise une URL PostgreSQL locale factice uniquement pour la génération du client Prisma. Cette valeur ne permet pas d’exécuter de requêtes réelles et ne remplace pas la configuration runtime.
 
 Variables à définir dans Vercel pour tester un vrai flux avec base et authentification :
 

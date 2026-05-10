@@ -11,6 +11,14 @@ export async function createCheckoutSession({ courseSlug, successUrl, cancelUrl 
     throw new Error('Formation introuvable ou non publiée.');
   }
 
+  if (!process.env.DATABASE_URL && (process.env.VERCEL_ENV === 'preview' || process.env.NODE_ENV !== 'production')) {
+    return {
+      provider: 'dev-simulated' as const,
+      providerReference: `preview_${course.slug}`,
+      redirectUrl: successUrl,
+    };
+  }
+
   const userId = await getCurrentPaymentUserId();
   const reference = `agt_${crypto.randomUUID()}`;
   const provider = getPaymentProvider();
