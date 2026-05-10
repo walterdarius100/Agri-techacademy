@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Local environment variables
+.env
+.env.local
+.env.*.local
+
+# Prisma local artifacts
+prisma/dev.db
+
+# Build outputs
+.next/
+out/
+dist/
+.vercel/
+
+# System files
+.DS_Store
