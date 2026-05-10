@@ -1,4 +1,5 @@
 import {
+  continueWithGoogleOAuth,
   getRedirectTarget,
   isAuthenticated,
   loginWithMockCredentials,
@@ -48,7 +49,7 @@ function clearErrors(form) {
 }
 
 function setLoading(form, isLoading) {
-  const button = form.querySelector('[data-submit-label]');
+  const button = form.querySelector('.auth-submit[data-submit-label]');
   form.setAttribute('aria-busy', String(isLoading));
   form.querySelectorAll('input, button').forEach((element) => {
     element.disabled = isLoading;
@@ -56,6 +57,17 @@ function setLoading(form, isLoading) {
 
   if (button) {
     button.textContent = isLoading ? button.dataset.loadingLabel : button.dataset.submitLabel;
+  }
+}
+
+
+function setGoogleButtonLoading(button, isLoading) {
+  button.disabled = isLoading;
+  button.setAttribute('aria-busy', String(isLoading));
+
+  const label = button.querySelector('[data-google-label]');
+  if (label) {
+    label.textContent = isLoading ? button.dataset.googleLoadingLabel : button.dataset.googleSubmitLabel;
   }
 }
 
@@ -110,6 +122,31 @@ function validateForgotPassword(form) {
 
 function redirectAfterAuth() {
   window.location.assign(getRedirectTarget('../dashboard/'));
+}
+
+
+function initGoogleOAuthButtons() {
+  document.querySelectorAll('[data-google-auth]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const form = button.closest('form');
+      if (!form) return;
+
+      setFormMessage(form, '');
+      setGoogleButtonLoading(button, true);
+
+      try {
+        const result = await continueWithGoogleOAuth({ mode: button.dataset.authMode });
+
+        if (!result.ok) {
+          setFormMessage(form, result.message);
+          setGoogleButtonLoading(button, false);
+        }
+      } catch (error) {
+        setFormMessage(form, error.message || 'Impossible de démarrer la connexion Google pour le moment.');
+        setGoogleButtonLoading(button, false);
+      }
+    });
+  });
 }
 
 function initLoginForm() {
@@ -200,6 +237,7 @@ updateAcademyAuthNavigation({
   logoutRedirectHref: '../login/'
 });
 initAcademyNavigation();
+initGoogleOAuthButtons();
 initLoginForm();
 initRegisterForm();
 initForgotPasswordForm();
