@@ -1,3 +1,4 @@
+import { updateAcademyAuthNavigation } from '../../lib/academy-auth.js';
 import { CourseList } from '../../components/academy/CourseList.js';
 import { SectionTitle } from '../../components/academy/SectionTitle.js';
 import { courses } from '../../data/courses.js';
@@ -43,4 +44,5 @@ function renderCoursesPage() {
 }
 
 renderCoursesPage();
+updateAcademyAuthNavigation({ loginHref: '../login/', registerHref: '../register/', dashboardHref: '../dashboard/', myCoursesHref: '../my-courses/', logoutRedirectHref: '../login/' });
 initAcademyNavigation();

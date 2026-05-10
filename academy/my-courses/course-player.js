@@ -1,6 +1,8 @@
+import { requireAuth, updateAcademyAuthNavigation } from '../../lib/academy-auth.js';
 import { escapeHtml } from '../../lib/html.js';
 import { canAccessCourse, getStudentCourseBySlug } from '../../data/student-academy.js';
 
+const authUser = requireAuth({ loginPath: '../../login/' });
 const coursePlayerRoot = document.querySelector('#coursePlayerRoot');
 const slug = window.location.pathname.split('/').filter(Boolean).at(-1);
 const course = getStudentCourseBySlug(slug);
@@ -86,7 +88,7 @@ function renderResources(resources) {
 function renderCoursePlayer() {
   if (!coursePlayerRoot) return;
 
-  if (!course || !canAccessCourse(slug)) {
+  if (!course || !canAccessCourse(slug, authUser)) {
     renderAccessDenied();
     return;
   }
@@ -150,5 +152,8 @@ function renderCoursePlayer() {
   `;
 }
 
-renderCoursePlayer();
-initAcademyNavigation();
+if (authUser) {
+  updateAcademyAuthNavigation({ loginHref: '../../login/', registerHref: '../../register/', dashboardHref: '../../dashboard/', myCoursesHref: '../', logoutRedirectHref: '../../login/' });
+  renderCoursePlayer();
+  initAcademyNavigation();
+}

@@ -1,6 +1,8 @@
+import { requireAuth, updateAcademyAuthNavigation } from '../../lib/academy-auth.js';
 import { escapeHtml } from '../../lib/html.js';
 import { getAccessibleStudentCourses, getOverallProgress, simulatedStudent } from '../../data/student-academy.js';
 
+const authUser = requireAuth({ loginPath: '../login/' });
 const dashboardRoot = document.querySelector('#studentDashboardRoot');
 
 function initAcademyNavigation() {
@@ -26,8 +28,8 @@ function renderProgressBar(progress, label) {
 function renderDashboard() {
   if (!dashboardRoot) return;
 
-  const courses = getAccessibleStudentCourses();
-  const overallProgress = getOverallProgress();
+  const courses = getAccessibleStudentCourses(authUser);
+  const overallProgress = getOverallProgress(authUser);
   const completedCourses = courses.filter((course) => course.progress >= 100).length;
   const activeCourses = courses.filter((course) => course.progress > 0 && course.progress < 100).length;
 
@@ -35,7 +37,7 @@ function renderDashboard() {
     <section class="student-hero section-pad" aria-labelledby="student-dashboard-title">
       <div class="student-hero__content reveal is-visible">
         <span class="eyebrow">Espace étudiant · simulation</span>
-        <h1 id="student-dashboard-title">Bienvenue, ${escapeHtml(simulatedStudent.name)} 👋</h1>
+        <h1 id="student-dashboard-title">Bienvenue, ${escapeHtml(authUser?.name || simulatedStudent.name)} 👋</h1>
         <p>Voici une première structure visuelle de votre espace étudiant. Les données, accès et progressions sont temporaires en attendant l’authentification, le paiement et la base de données.</p>
         <div class="hero-actions academy-hero__actions">
           <a href="../my-courses/" class="btn primary academy-cta">Mes formations</a>
@@ -43,7 +45,7 @@ function renderDashboard() {
         </div>
       </div>
       <aside class="student-summary-card reveal is-visible reveal-delay-1" aria-label="Progression globale">
-        <span>${escapeHtml(simulatedStudent.cohort)}</span>
+        <span>${escapeHtml(authUser?.cohort || simulatedStudent.cohort)}</span>
         <strong>${overallProgress}%</strong>
         <p>Progression globale moyenne sur les formations accessibles.</p>
         ${renderProgressBar(overallProgress, 'Progression globale')}
@@ -95,5 +97,8 @@ function renderDashboard() {
   `;
 }
 
-renderDashboard();
-initAcademyNavigation();
+if (authUser) {
+  updateAcademyAuthNavigation({ loginHref: '../login/', registerHref: '../register/', dashboardHref: './', myCoursesHref: '../my-courses/', logoutRedirectHref: '../login/' });
+  renderDashboard();
+  initAcademyNavigation();
+}
