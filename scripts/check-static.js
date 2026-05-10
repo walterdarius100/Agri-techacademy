@@ -2,7 +2,7 @@ const { readdirSync, statSync } = require('node:fs');
 const { join } = require('node:path');
 const { spawnSync } = require('node:child_process');
 
-const ignoredDirectories = new Set(['.git', 'node_modules', 'dist', 'build']);
+const ignoredDirectories = new Set(['.git', '.next', 'node_modules', 'dist', 'build']);
 const jsFiles = [];
 
 function collectJavaScriptFiles(directory) {
@@ -14,7 +14,7 @@ function collectJavaScriptFiles(directory) {
 
     if (stats.isDirectory()) {
       collectJavaScriptFiles(fullPath);
-    } else if (entry.endsWith('.js')) {
+    } else if (entry.endsWith('.js') || entry.endsWith('.mjs') || entry.endsWith('.cjs')) {
       jsFiles.push(fullPath);
     }
   }
@@ -27,4 +27,4 @@ for (const file of jsFiles) {
   if (result.status !== 0) process.exit(result.status || 1);
 }
 
-console.log(`Static build check passed for ${jsFiles.length} JavaScript files.`);
+console.log(`Static build check passed for ${jsFiles.length} JavaScript config/source files.`);
