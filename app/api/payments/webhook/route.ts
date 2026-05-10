@@ -3,6 +3,7 @@ import { confirmPaymentAndEnroll } from '../../../../lib/payments/fulfillment';
 import { parseProviderWebhook } from '../../../../lib/payments/providers';
 
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 
 export async function POST(request: Request) {
   try {

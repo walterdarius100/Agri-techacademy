@@ -5,6 +5,7 @@ import { getPublishedCourseBySlug } from '../../../../lib/payments/courses';
 import { formatMoney } from '../../../../lib/payments/money';
 
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 
 type CheckoutPageProps = {
   params: Promise<{ courseSlug: string }>;

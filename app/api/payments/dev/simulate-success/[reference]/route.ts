@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { confirmPaymentAndEnroll } from '../../../../../../lib/payments/fulfillment';
 
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 
 type SimulateSuccessRouteProps = {
   params: Promise<{ reference: string }>;
