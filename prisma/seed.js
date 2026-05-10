@@ -9,7 +9,7 @@ const courses = [
     description: 'Bases pratiques pour lancer et gérer un élevage de lapins rentable.',
     level: 'Débutant',
     duration: '4 semaines',
-    priceCents: 0,
+    priceCents: 4900,
   },
   {
     slug: 'aviculture',
@@ -17,7 +17,7 @@ const courses = [
     description: 'Fondamentaux de production avicole, biosécurité et conduite d’élevage.',
     level: 'Débutant',
     duration: '6 semaines',
-    priceCents: 0,
+    priceCents: 5900,
   },
   {
     slug: 'apiculture',
@@ -25,7 +25,7 @@ const courses = [
     description: 'Initiation à la conduite de ruches et à la valorisation des produits apicoles.',
     level: 'Débutant',
     duration: '5 semaines',
-    priceCents: 0,
+    priceCents: 3900,
   },
 ];
 
